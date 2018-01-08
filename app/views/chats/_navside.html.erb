@@ -1,0 +1,110 @@
+<div class="panel with-nav-tabs panel-info">
+  <div class="panel-heading">
+    <ul class="nav nav-tabs">
+      <li class=<%= chat_active %>>
+        <a href="#chat-tab" data-toggle="tab"><i class="fa fa-weixin"></i>聊天室</a>
+      </li>
+      <li class=<%= contact_active %>>
+        <a href="#contact-tab" data-toggle="tab"><i class="fa fa-book"></i>通讯录</a>
+      </li>
+    </ul>
+  </div>
+  <div class="panel-body" id="tab-panel-body">
+    <div class="tab-content">
+      <div class="tab-pane fade in <%= contact_active %>" id="contact-tab">
+        <ul class="list-group">
+
+<% if not @inverse_i_friends.nil? %>
+            <li class="list-group-item" style="padding: 0px; margin-bottom: 0px;">
+              <button class="btn btn-default btn-block" data-toggle="collapse" data-target="#user-inverse_i" id="tab-contact-default" style="background:#aaffaa;">
+                  <div class="text-muted">
+                    申请列表 <span class="badge"><%= @inverse_i_friends.size %></span>
+                  </div>
+              </button>
+              <div id="user-inverse_i" class="collapse">
+                  <ul class="list-group">
+                    <% @inverse_i_friends.each do |user| %>
+                      <li class="list-group-item">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        <%= user.name %>
+                        <a class='btn btn-success btn-xs' data-method='post' href='/friendships?friend_id=<%= user.id %>'>同意</a>
+                        <a class='btn btn-danger btn-xs' data-method='delete' href='/friendships/<%= user.id %>'>拒绝</a>
+                      </li>
+                    <% end %>
+                  </ul>
+              </div>
+            </li>
+<%end%>
+
+<% if not @i_inverse_friends.nil? %>
+            <li class="list-group-item" style="padding: 0px; margin-bottom: 0px;">
+              <button class="btn btn-default btn-block" data-toggle="collapse" data-target="#user-i-inverse" id="tab-contact-default" style="background:#aaffaa;">
+                  <div class="text-muted">
+                    等待回应<span class="badge"><%= @i_inverse_friends.size %></span>
+                  </div>
+              </button>
+              <div id="user-i-inverse" class="collapse">
+                  <ul class="list-group">
+                    <% @i_inverse_friends.each do |user| %>
+                      <li class="list-group-item">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        <%= user.name %>
+                        <a class='btn btn-danger btn-xs' data-method='delete' href='/friendships/<%= user.id %>'>撤回</a>
+                      </li>
+                    <% end %>
+                  </ul>
+              </div>
+            </li>
+<%end%>
+
+          <% @friends.each do |user| %>
+              <li class="list-group-item" style="padding: 0px; margin-bottom: 0px;">
+
+                <button class="btn btn-default btn-block" data-toggle="collapse" data-target="#user-<%= user.id %>" id="tab-contact-default">
+                  <%= image_tag "user-icon.png", class: "img-sm" %>
+                  <div class="text-muted">
+                    <%= user.name %>
+                  </div>
+                </button>
+
+                <div id="user-<%= user.id %>" class="collapse">
+                  <%= form_for Chat.new, url: chats_path, method: :post do |f| %>
+                      <%= hidden_field_tag :users, [user.id] %>
+                      <%= button_tag(:class => "btn btn-success btn-block", style: "border-radius: 0;") do %>
+                          <i class="fa fa-angle-right"></i> 发起聊天
+                      <% end %>
+                  <% end %>
+                  <%= link_to user_path(user), method: :get, class: 'btn btn-info btn-block', role: "button", style: "border-radius: 0" do %>
+                      <i class="fa fa-angle-right"></i> 用户详情
+                  <% end %>
+                  <%= link_to friendship_path(user), method: :delete, class: 'btn btn-danger btn-block', role: "button", style: "border-radius: 0;margin:0px;" do %>
+                      <i class="fa fa-angle-right"></i> 删除用户
+                  <% end %>
+                </div>
+              </li>
+          <% end %>
+
+
+        </ul>
+      </div>
+
+      <div class="tab-pane fade in <%= chat_active %>" id="chat-tab">
+        <ul class="list-group">
+          <% current_user.chats.each do |chatroom| %>
+              <%= link_to chat_path(chatroom), class: 'list-group-item' do %>
+                  <i class="fa fa-wechat fa-5"></i> <%= truncate(chatroom.name, length: 20) %>
+                  <text id="chatroom-<%= chatroom.id %>"></text>
+              <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-footer">
+    <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#myModal">添加朋友
+    </button>
+  </div>
+</div>
+
+<%= render "search_fridends" %>

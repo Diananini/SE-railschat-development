@@ -1,0 +1,33 @@
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+
+          <!-- Start Sign In Form -->
+          <!-- form action="#" class="fh5co-form animate-box" data-animate-effect="fadeInLeft" -->
+            <%= form_for(:session, url: sessions_login_path, method: :post, html: {:role=>'form', :class=>'fh5co-form animate-box'}) do |f| %>
+              <h2>SIGN IN</h2>
+              <div class="form-group">
+                <label for="username" class="sr-only"></label>
+                <%= f.email_field :email, class: 'form-control', placeholder: "输入邮箱" %>
+              </div>
+              <div class="form-group">
+                <label for="password" class="sr-only">Password</label>
+                <%= f.password_field :password, class: 'form-control', placeholder: "输入密码" %>
+              </div>
+              <div class="form-group">
+                <label for="remember"><%= f.check_box :remember_me %>记住我</label>
+              </div>
+              <div class="form-group">
+                <p> 未注册? <%= link_to users_path, method: :post do %>注册<% end %>|<a href="#">忘记密码</a></p>
+              </div>
+              <div class="form-group">
+                <%= button_tag(type: "submit", class: "btn btn-primary btn-block") do %>
+                <span class="glyphicon glyphicon-off"></span> 登录 <% end %>
+              </div>
+            <% end %>
+          <!-- /form -- >
+          <!-- END Sign In Form -->
+
+        </div>
+      </div>
+    </div>

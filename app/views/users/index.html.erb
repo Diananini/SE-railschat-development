@@ -1,0 +1,5 @@
+<% if current_user %>
+  <%= controller.redirect_to users_path(current_user) %>
+<% else %>
+  <%= controller.redirect_to root_path %>
+<% end %>

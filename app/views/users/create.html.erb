@@ -1,0 +1,43 @@
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+
+            <%= form_for(:user, url: {action: "create"}, html: {:role=>'form', :class=>'fh5co-form animate-box'}) do |f| %>
+              <h2>SIGN UP</h2>
+              <div class="form-group">
+                <label for="username" class="sr-only"></label>
+                <%= f.text_field :name, class: 'form-control', placeholder: "输入用户名" %>
+              </div>
+              <div class="form-group">
+                <label for="useremail" class="sr-only"></label>
+                <%= f.email_field :email, class: 'form-control', placeholder: "输入邮箱" %>
+              </div>
+              <div class="form-group">
+                <label for="password" class="sr-only">Password</label>
+                <%= f.password_field :password, class: 'form-control', placeholder: "输入密码" %>
+              </div>
+              <div class="form-group">
+                <label for="phonenumber" class="sr-only">Phonenumber</label>
+                <%= f.text_field :phonenumber, class: 'form-control', placeholder: "输入电话号码" %>
+              </div>
+              <div class="form-group">
+                <label for="Sex" >Sex:</label>
+                <%= radio_button_tag(:sex, "male") %>
+                <%= label_tag(:sex_child, "男") %>
+                <%= radio_button_tag(:sex, "female") %>
+                <%= label_tag("女") %>
+              </div>
+              <div class="form-group">
+                <label for="remember"><%= f.check_box :remember_me %>记住我</label>
+              </div>
+              <div class="form-group">
+                <p> 已有账号? 请 <%= link_to root_path do %>登录<% end %></p>
+              </div>
+              <div class="form-group">
+                <%= button_tag(type: "submit", class: "btn btn-primary btn-block") do %>
+                <span class="glyphicon glyphicon-off"></span> 注册 <% end %>
+              </div>
+            <% end %>
+        </div>
+      </div>
+    </div>

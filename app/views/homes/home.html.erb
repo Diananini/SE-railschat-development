@@ -1,0 +1,7 @@
+<% if current_user %>
+  <%= controller.redirect_to chats_path %>
+<% else %>
+  <%= render 'layouts/login_panel' %>
+<% end %>
+
+

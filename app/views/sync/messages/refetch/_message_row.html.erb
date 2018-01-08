@@ -1,0 +1,61 @@
+<li class="mar-btm">
+  <div class="media-<%= current_user.id==message.user.id ? 'right' : 'left' %>">
+    <%= image_tag "user-icon.png", class: "img-sm" %>
+  </div>
+  <div class="media-body pad-hor <%= "speech-right" if current_user.id==message.user.id %>">
+    <div class="speech">
+      <p class="media-heading"><%= current_user.id==message.user.id ? '我' : message.user.name %>
+        <text class="speech-time">
+          <i class="fa fa-clock-o fa-fw"></i>
+          <%= message.created_at.strftime("%Y-%m-%d %H:%M:%S")%>
+        </text>
+
+        <% if message.positive == message.negative %>
+          <%= image_tag "good-3.png", class: "img-sm" %>
+
+        <% else %>
+          <% if(message.positive.to_f > message.negative.to_f)%>
+            <% if(message.positive.to_f > 0.8)%>
+              <%= image_tag "good-1.png", class: "img-sm" %>
+            <% else %>
+              <% if(message.positive.to_f > 0.5)%>
+                <%= image_tag "good-2.png", class: "img-sm" %>
+              <% else %>
+                <%= image_tag "good-3.png", class: "img-sm" %>
+              <% end %>
+            <% end %>
+          <% end %>
+
+          <% if(message.positive.to_f < message.negative.to_f)%>
+            <% if(message.negative.to_f > 0.8)%>
+              <%= image_tag "bad-1.png", class: "img-sm" %>
+            <% else %>
+              <% if(message.negative.to_f > 0.5)%>
+                <%= image_tag "bad-2.png", class: "img-sm" %>
+              <% else %>
+                <%= image_tag "bad-3.png", class: "img-sm" %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+
+
+      </p>
+      <p style="margin-bottom: 5px; margin-top: 5px;"><%= message.body %></p>
+    </div>
+  </div>
+</li>
+
+<script>
+    var $cont = $('.nano-content');
+    $cont[0].scrollTop = $cont[0].scrollHeight;
+
+    <%  red = ('bb'.hex + (('ff'.hex - 'bb'.hex) * message.negative.to_f) ).to_i.to_s(16).to_s %>
+    <%  blue =  ('bb'.hex + (('ff'.hex - 'bb'.hex) * message.positive.to_f) ).to_i.to_s(16).to_s %>
+    <%  color = "##{red}bb#{blue}"  %>
+    document.getElementById('demo-chat-body').style.backgroundColor="<%= color%>";
+</script>
+
+<!--   id = demo-chat-body    -->
+
+<!--  document.getElementById('div2').style.backgroundColor='#ff0000';   -->
