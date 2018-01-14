@@ -34,7 +34,7 @@ class UsersController < ApplicationController
         user = User.find_by(email: params[:user][:email].downcase)
         log_in user
         params[:user][:remember_me] == '1' ? remember_user(user) : forget_user(user)
-        flash= {:info => "注册成功: #{user.name} :)"}
+        flash= {:info => "注册成功: #{user_name} :)"}
       end
       redirect_to root_url, :flash => flash
     end

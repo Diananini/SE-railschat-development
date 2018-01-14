@@ -1,12 +1,12 @@
 # RailsChat 
 
-RailsChat是一款由Rails开发的实时Web聊天室，在[Render_sync](https://github.com/chrismccord/render_sync)的基础上完成，有需要即时通讯的应用可以考虑这个Example
+RailsChat是一款由Rails开发的实时Web聊天室，在[Render_sync](https://github.com/chrismccord/render_sync)和[RailsChat](https://github.com/PENGZhaoqing/RailsChat)的基础上完成.
 
 ## Online Demo
 
-![demo](demo.gif)
+![demo](demo2.mp4)
 
-请点击[这里](http://139.129.209.63:44400/)访问Demo，测试用户登陆账号格式为：
+请点击[这里](http://138.68.17.221:3000)访问Demo，测试用户登陆账号格式为：
 
 ```
 username: user<number>@test.com
@@ -25,13 +25,18 @@ Note：请用两个浏览器分别登陆不同的用户来测试消息的即使�
 * 房主可以拉人，踢人
 * 房主能转移房屋权限
 
+* UI界面修改（类似WeChat）
+* 注册功能
+* 时区设定为北京时间
+* 用户个人简介
+* 添加好友需要对方同意
+* 消息情感分析
+
+
 ## Todo
 
 1. 现在的即时推送只限于聊天的消息，其他的推送比如未读信息提醒（包括声音）等还未涉及
-2. 添加好友需要对方同意，现在是单方面添加
-3. 用户个人简介还未开发
-4. UI界面修改（类似WeChat）
-5. 管理后台开发
+2. 管理后台开发
 
 ## Usage 
 
@@ -101,17 +106,6 @@ Note：请用两个浏览器分别登陆不同的用户来测试消息的即使�
 2. 以上加载完成但是仍然没有推送的时候，请查看Rails服务器的log文件
 
 3. 需要在两个浏览器中登录不同的账号来检验聊天室功能
-
-
-## 截图
-
-<img src="/lib/Snip20170301_2.png">
-
-<img src="/lib/Snip20170301_3.png">
-
-<img src="/lib/Snip20170301_4.png">
-
-<img src="/lib/Snip20170301_5.png">
 
 
 

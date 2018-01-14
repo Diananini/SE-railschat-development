@@ -11,11 +11,11 @@
 
       <% if current_user %>
 
-          <li>
+          <!-- <li>
             <%= link_to chats_path, class: "dropbtn" do %>
                  进入聊天 <i class="fa fa-wechat"></i>
             <% end %>
-          </li>
+          </li> -->
 
           <li>
             <%= link_to user_path(current_user), method: :get, class: "dropbtn" do %>
@@ -28,12 +28,9 @@
                 退出 <span class="	glyphicon glyphicon-off"></span>
             <% end %>
           </li>
-          
+
       <% end %>
     </ul>
   </div>
   </div>
 </nav>
-
-
-

@@ -1,17 +1,17 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <i class="fa fa-comments fa-fw"></i> 房间信息
+    <i class="fa fa-comments fa-fw"></i> 群聊信息
   </div>
   <div class="panel-body">
 
     <table class="table">
       <tbody>
       <tr>
-        <td width="40%">房间名:</td>
+        <td width="40%">群聊名称:</td>
         <td><%= @chat.name %></td>
       </tr>
       <tr>
-        <td>当前用户:</td>
+        <td>群聊成员:</td>
         <td>
           <% @chat.users.each do |user| %>
                   <span class="label label-warning" style=" display: inline-block;"><%= user.name %>
@@ -29,11 +29,11 @@
     <hr>
     <% if current_user.id==@chat.admin_id %>
 
-        <button data-toggle="collapse" data-target="#add-user" class="btn btn-info btn-block" style="margin-bottom: 5px;">添加用户</button>
+        <button data-toggle="collapse" data-target="#add-user" class="btn btn-info btn-block" style="margin-bottom: 5px;">邀请好友加入群聊</button>
         <div id="add-user" class="collapse">
           <div class="well">
             <%= form_for @chat, url: add_user_chat_path(@chat), method: :post, role: 'form' do |f| %>
-                <label for="users">选择加入聊天的用户：</label>
+                <label for="users">选择邀请加入聊天的好友：</label>
                 <%= select_tag :users, options_for_select(@friends_out_chat.map { |user| [user.name, user.id] }), class: "js-example-basic-multiple", multiple: "multiple", multiple: true, style: "width: 100%" %>
                 <%= f.submit '确定', class: 'btn btn-success btn-block', style: 'margin-top:10px;margin-bottom:10px ' %>
             <% end %>
@@ -41,12 +41,12 @@
           </div>
         </div>
 
-        <button data-toggle="collapse" data-target="#edit-room" class="btn btn-primary btn-block" style="margin-bottom: 5px;">修改房间名</button>
+        <button data-toggle="collapse" data-target="#edit-room" class="btn btn-primary btn-block" style="margin-bottom: 5px;">修改群聊名称</button>
         <div id="edit-room" class="collapse">
           <div class="well">
             <%= form_for @chat, url: chat_path(@chat), method: :patch, role: "form" do |f| %>
                 <div class="form-group">
-                  <label for="name">编辑房间名:</label>
+                  <label for="name">编辑群聊名称:</label>
                   <%= f.text_field :name, class: "form-control" %>
                 </div>
                 <%= f.submit '确定', class: 'btn btn-success btn-block', style: 'margin-top:10px;margin-bottom:10px ' %>
@@ -55,11 +55,11 @@
           </div>
         </div>
 
-        <button data-toggle="collapse" data-target="#trans-auth" class="btn btn-danger btn-block">转移权限</button>
+        <button data-toggle="collapse" data-target="#trans-auth" class="btn btn-danger btn-block">转移管理员权限</button>
         <div id="trans-auth" class="collapse">
           <div class="well">
             <%= form_for @chat, url: trans_auth_chat_path(@chat), method: :patch, role: 'form' do |f| %>
-                <label for="users">移交此房间管理权限给：</label>
+                <label for="users">移交此群聊管理权限给：</label>
                 <%= select_tag :admin_id, options_for_select(@users_in_chat.map { |user| [user.name, user.id] }), class: "js-example-basic-multiple", style: "width: 100%" %>
                 <%= f.submit '确定', class: 'btn btn-success btn-block', style: 'margin-top:10px;margin-bottom:10px ' %>
             <% end %>

@@ -3,7 +3,7 @@
     <%= image_tag "user-icon.png", class: "img-sm" %>
   </div>
   <div class="media-body pad-hor <%= "speech-right" if current_user.id==message.user.id %>">
-    <div class="speech">
+    <div class="speech" id="message-box-<%= message.id%>">
       <p class="media-heading"><%= current_user.id==message.user.id ? '我' : message.user.name %>
         <text class="speech-time">
           <i class="fa fa-clock-o fa-fw"></i>
@@ -53,7 +53,8 @@
     <%  red = ('bb'.hex + (('ff'.hex - 'bb'.hex) * message.negative.to_f) ).to_i.to_s(16).to_s %>
     <%  blue =  ('bb'.hex + (('ff'.hex - 'bb'.hex) * message.positive.to_f) ).to_i.to_s(16).to_s %>
     <%  color = "##{red}bb#{blue}"  %>
-    document.getElementById('demo-chat-body').style.backgroundColor="<%= color%>";
+    document.getElementById("message-box-<%= message.id%>").style.backgroundColor="<%= color%>";
+    // document.getElementById('message-body').style.backgroundColor="<%= color%>";
 </script>
 
 <!--   id = demo-chat-body    -->

@@ -2,7 +2,7 @@
   <div class="panel-heading">
     <ul class="nav nav-tabs">
       <li class=<%= chat_active %>>
-        <a href="#chat-tab" data-toggle="tab"><i class="fa fa-weixin"></i>聊天室</a>
+        <a href="#chat-tab" data-toggle="tab"><i class="fa fa-weixin"></i>我的群聊</a>
       </li>
       <li class=<%= contact_active %>>
         <a href="#contact-tab" data-toggle="tab"><i class="fa fa-book"></i>通讯录</a>
@@ -49,7 +49,7 @@
                       <li class="list-group-item">
                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                         <%= user.name %>
-                        <a class='btn btn-danger btn-xs' data-method='delete' href='/friendships/<%= user.id %>'>撤回</a>
+                        <a class='btn btn-danger btn-xs' data-method='delete' href='/friendships/<%= user.id %>'>撤回好友请求</a>
                       </li>
                     <% end %>
                   </ul>
@@ -74,11 +74,11 @@
                           <i class="fa fa-angle-right"></i> 发起聊天
                       <% end %>
                   <% end %>
-                  <%= link_to user_path(user), method: :get, class: 'btn btn-info btn-block', role: "button", style: "border-radius: 0" do %>
-                      <i class="fa fa-angle-right"></i> 用户详情
-                  <% end %>
+                  <!-- <%= link_to user_path(user), method: :get, class: 'btn btn-info btn-block', role: "button", style: "border-radius: 0" do %>
+                      <i class="fa fa-angle-right"></i> 好友信息
+                  <% end %> -->
                   <%= link_to friendship_path(user), method: :delete, class: 'btn btn-danger btn-block', role: "button", style: "border-radius: 0;margin:0px;" do %>
-                      <i class="fa fa-angle-right"></i> 删除用户
+                      <i class="fa fa-angle-right"></i> 删除好友
                   <% end %>
                 </div>
               </li>
