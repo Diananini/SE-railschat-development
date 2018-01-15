@@ -4,7 +4,7 @@ RailsChat是一款由Rails开发的实时Web聊天室，在[Render_sync](https:/
 
 ## Online Demo
 
-![demo](demo2.gif)
+![image](demo2.gif)
 
 请点击[这里](http://138.68.17.221:3000)访问Demo，测试用户登陆账号格式为：
 
